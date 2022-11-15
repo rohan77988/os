@@ -1,0 +1,44 @@
+#include <stdio.h>
+
+int main(void) {
+  int pages;
+  int frames,s,pf=0;
+  printf("enter total no of pages and frames\n");
+  scanf("%d %d",&pages,&frames);
+  int p[pages];
+  int temp[frames];
+    printf("enter pages :\n");
+  for(int i=0;i<pages;i++)
+    scanf("%d",&p[i]);
+
+  for(int i=0;i<frames;i++)
+    temp[i]=-1;
+  for(int i=0;i<pages;i++)
+    {
+      s=0;
+      for(int j=0;j<frames;j++)
+        {
+          if(p[i]==temp[j])
+          {
+            s++;
+            pf--;
+          }
+        }
+    pf++;
+      if(s==0)
+      {
+        temp[(pf-1)%frames]=p[i];
+      }
+      printf("\n");
+      printf("%d\t",p[i]);
+      for(int j=0;j<frames;j++)
+        {
+          if(temp[j]!=-1)
+            printf("%d\t",temp[j]);
+          else
+            printf("-\t");
+        }
+      }
+  printf("\npage faults = %d",pf);
+  return 0;
+}
